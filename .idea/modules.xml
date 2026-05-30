@@ -3,6 +3,8 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/BibliotecaPOO.iml" filepath="$PROJECT_DIR$/BibliotecaPOO.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../biblio/biblio.iml" filepath="$PROJECT_DIR$/../biblio/biblio.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../biblio/cloude_biblio/cloude_biblio.iml" filepath="$PROJECT_DIR$/../biblio/cloude_biblio/cloude_biblio.iml" />
     </modules>
   </component>
 </project>
