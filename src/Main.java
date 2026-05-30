@@ -1,11 +1,16 @@
+//
+// Source code recreated from a .class file by IntelliJ IDEA
+// (powered by Fernflower decompiler)
+//
+
 import java.util.Scanner;
 
-//TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
-// click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class Main {
+    public Main() {
+    }
+
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-
 
         int opcao;
         do {
@@ -14,39 +19,26 @@ public class Main {
             System.out.println("Digite a opção desejada: ");
             opcao = input.nextInt();
             input.nextLine();
-
             switch (opcao) {
+                case 0:
+                    System.out.println("O sistema foi encerrado com sucesso!");
+                    break;
                 case 1:
                     System.out.println("Qual livro gostaria de cadastrar: ");
                     String c_livro = input.nextLine();
-                    System.out.println("O livro "+c_livro+" foi cadastrado com sucesso!");
-
-
+                    System.out.println("O livro " + c_livro + " foi cadastrado com sucesso!");
                     break;
-
                 case 2:
                     Usuario user = Usuario.criar();
                     break;
-
-
                 case 3:
-                    ;
                     System.out.println("Qual livro gostaria de cadastrar: ");
-                    // String c_livro = input.nextLine();
                     System.out.println("O livro foi consultado com sucesso!");
-                    break;
-
-
-
-                case 0:
-                    System.out.println("O sistema foi encerrado com sucesso!");
                     break;
                 default:
                     System.out.println("Opção inválida.");
             }
+        } while(opcao != 0);
 
-
-        } while (opcao!= 0);
     }
 }
-
