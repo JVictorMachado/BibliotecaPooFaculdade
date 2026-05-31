@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Usuario {
@@ -6,91 +7,14 @@ public class Usuario {
     private String nome;
     private int matricula;
     private String tipo;
-    private int cpf;
+    private String cpf;
     private String email;
 
     // Metodos da classe
 
-    public static Usuario criar(){
-
-        Scanner input = new Scanner(System.in);
-        String c_tipo;
-        do{
-            System.out.println("Informe o tipo de usuario (ex: Aluno | Professor): ");
-            c_tipo = input.nextLine().trim();
-            if (!c_tipo.isEmpty()) {
-                c_tipo = c_tipo.substring(0, 1).toUpperCase() + c_tipo.substring(1).toLowerCase();
-            }
-            switch (c_tipo){
-                case "Aluno":
-
-                    System.out.println("Informe o nome do Aluno: ");
-                    String a_nome = input.nextLine();
-
-                    System.out.println("Informe o numero da matricula: ");
-                    int a_matricula = input.nextInt();
-                    input.nextLine();
-
-                    System.out.println("Informe o cpf do Aluno: ");
-                    int a_cpf = input.nextInt();
-                    input.nextLine();
-
-                    System.out.println("Informe o email do Aluno: ");
-                    String a_email = input.nextLine();
-
-                    System.out.printf(" ---Dados do Aluno---\n"
-                            +"\nNOME: " + a_nome
-                            +"\nMATRICULA: " + a_matricula
-                            +"\nTIPO: " + c_tipo
-                            +"\nCPF: " + a_cpf
-                            +"\nEMAIL: " + a_email+ "\n");
-
-
-                    System.out.println("\n Aluno " +a_nome+ " foi cadastrado com sucesso!");
-
-                    return new  Aluno(a_nome,a_matricula,c_tipo,a_cpf,a_email);
-
-                case "Professor":
-                    System.out.println("Informe o nome do Professor: ");
-                    String p_nome = input.nextLine();
-
-                    System.out.println("Informe o numero da matricula: ");
-                    int p_matricula = input.nextInt();
-                    input.nextLine();
-
-                    System.out.println("Informe o cpf do Professor: ");
-                    int p_cpf = input.nextInt();
-                    input.nextLine();
-
-                    System.out.println("Informe o email do Professor: ");
-                    String p_email = input.nextLine();
-
-                    System.out.printf(" ---Dados do Professor---\n"
-                            +"\nNOME: " + p_nome
-                            +"\nMATRICULA: " + p_matricula
-                            +"\nTIPO: " + c_tipo
-                            +"\nCPF: " + p_cpf
-                            +"\nEMAIL: " + p_email+ "\n");
-
-
-                    System.out.println("\n Professor " +p_nome+ " cadastrado com sucesso!");
-
-                    return new Professor(p_nome,p_matricula,c_tipo,p_cpf,p_email);
-
-                default:
-                    System.out.println("Entrada invalida... ");
-            }
-
-        }while (!c_tipo.equals("Aluno") && !c_tipo.equals("Professor"));
-
-        return null;
-
-    }
-
-
     // Metodo construtor
 
-    public Usuario(String nome, int matricula, String tipo, int cpf, String email) {
+    public Usuario(String nome, int matricula, String tipo, String cpf, String email) {
         this.nome = nome;
         this.matricula = matricula;
         this.tipo = tipo;
@@ -124,11 +48,11 @@ public class Usuario {
         this.tipo = tipo;
     }
 
-    public int getCpf() {
+    public String getCpf() {
         return cpf;
     }
 
-    public void setCpf(int cpf) {
+    public void setCpf(String cpf) {
         this.cpf = cpf;
     }
 
@@ -138,5 +62,106 @@ public class Usuario {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public int getLimiteEmprestimos() {
+        return 3;
+    }
+
+    public static void menuUsuarios(Scanner input, ArrayList<Usuario> usuarios) {
+        int opcao;
+
+        do {
+            System.out.println("\n=== Menu de Usuarios ===");
+            System.out.println("1 - Cadastrar usuario");
+            System.out.println("2 - Listar usuarios");
+            System.out.println("0 - Voltar");
+            System.out.println("Escolha uma opcao:");
+
+            opcao = input.nextInt();
+            input.nextLine();
+
+            switch (opcao) {
+                case 1:
+                    if (cadastrarUsuario(input, usuarios)) {
+                        opcao = 0;
+                    }
+                    break;
+                case 2:
+                    listarUsuarios(usuarios);
+                    break;
+                case 0:
+                    break;
+                default:
+                    System.out.println("Opcao invalida.");
+            }
+        } while (opcao != 0);
+    }
+
+    public static boolean cadastrarUsuario(Scanner input, ArrayList<Usuario> usuarios) {
+        int opcao;
+        boolean cadastrou = false;
+
+        do {
+            System.out.println("\n=== Cadastro de Usuario ===");
+            System.out.println("1 - Aluno");
+            System.out.println("2 - Professor");
+            System.out.println("0 - Voltar");
+            System.out.println("Escolha uma opcao:");
+
+            opcao = input.nextInt();
+            input.nextLine();
+
+            switch (opcao) {
+            case 1:
+                Aluno aluno = Aluno.criar(input);
+                usuarios.add(aluno);
+                cadastrou = true;
+                opcao = 0;
+                break;
+            case 2:
+                Professor professor = Professor.criar(input);
+                usuarios.add(professor);
+                cadastrou = true;
+                opcao = 0;
+                break;
+            case 0:
+                break;
+            default:
+                System.out.println("Opcao invalida.");
+            }
+        } while (opcao != 0);
+
+        return cadastrou;
+    }
+
+    public static void listarUsuarios(ArrayList<Usuario> usuarios) {
+        boolean encontrou = false;
+
+        for (Usuario usuario : usuarios) {
+            usuario.mostrarDados();
+            encontrou = true;
+        }
+
+        if (encontrou == false) {
+            System.out.println("Nenhum usuario cadastrado.");
+        }
+    }
+
+    public static Usuario buscarUsuario(ArrayList<Usuario> usuarios, int matricula) {
+        for (Usuario usuario : usuarios) {
+            if (usuario.getMatricula() == matricula) {
+                return usuario;
+            }
+        }
+        return null;
+    }
+
+    public void mostrarDados() {
+        System.out.println("NOME: " + nome
+                + " | MATRICULA: " + matricula
+                + " | TIPO: " + tipo
+                + " | CPF: " + cpf
+                + " | EMAIL: " + email);
     }
 }
