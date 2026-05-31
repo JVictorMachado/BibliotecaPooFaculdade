@@ -1,148 +1,169 @@
-# Sistema de Gestao de Biblioteca Academica
+<div align="center">
 
-Sistema desenvolvido em Java para simular o funcionamento basico de uma biblioteca academica.
+# 📚 Sistema de Gestão de Biblioteca Acadêmica
 
-O projeto funciona pelo console e permite gerenciar usuarios, livros, emprestimos e devolucoes.
+Sistema desenvolvido em Java para simular o funcionamento básico de uma biblioteca acadêmica, com foco na prática de Programação Orientada a Objetos.
+
+![Java](https://img.shields.io/badge/Java-JDK%208%2B-orange?style=for-the-badge&logo=java)
+![Console](https://img.shields.io/badge/Interface-Console-blue?style=for-the-badge)
+![Status](https://img.shields.io/badge/Status-Concluído-brightgreen?style=for-the-badge)
+![POO](https://img.shields.io/badge/Paradigma-POO-purple?style=for-the-badge)
+
+</div>
 
 ---
 
-## Sobre o Projeto
+## 📋 Índice
 
-Este sistema foi desenvolvido com foco nos conceitos principais de Programacao Orientada a Objetos.
-
-Ele utiliza classes separadas para representar usuarios, alunos, professores, livros e emprestimos. Os dados sao armazenados em memoria durante a execucao do programa, utilizando `ArrayList`.
+- [Sobre o Projeto](#-sobre-o-projeto)
+- [Tecnologias Utilizadas](#-tecnologias-utilizadas)
+- [Conceitos de POO Aplicados](#-conceitos-de-poo-aplicados)
+- [Funcionalidades](#-funcionalidades)
+- [Estrutura do Projeto](#-estrutura-do-projeto)
+- [Como Executar](#-como-executar)
+- [Requisitos](#-requisitos)
+- [Observações](#-observações)
+- [Desenvolvedores](#-desenvolvedores)
 
 ---
 
-## Tecnologias Utilizadas
+## 💡 Sobre o Projeto
+
+Este sistema foi desenvolvido como projeto acadêmico com foco nos conceitos fundamentais de **Programação Orientada a Objetos (POO)**. O programa roda pelo console e permite gerenciar usuários, livros, empréstimos e devoluções de uma biblioteca acadêmica.
+
+As entidades do sistema são representadas por classes separadas — usuários, alunos, professores, livros e empréstimos — e os dados são armazenados em memória durante a execução utilizando `ArrayList`.
+
+---
+
+## 🛠 Tecnologias Utilizadas
 
 | Tecnologia | Uso |
 |---|---|
-| Java | Linguagem principal |
-| Console | Interface textual |
-| ArrayList | Armazenamento em memoria |
-| POO | Organizacao das classes |
+| Java | Linguagem principal do projeto |
+| Console | Interface textual de interação |
+| ArrayList | Armazenamento de dados em memória |
+| POO | Paradigma de organização das classes |
 
 ---
 
-## Conceitos de POO Aplicados
+## 🎓 Conceitos de POO Aplicados
 
-| Conceito        | Onde aparece no projeto |
-|-----------------|---|
-| Classe e objeto | `Usuario`, `Aluno`, `Professor`, `Livros`, `Emprestimo` |
-| Encapsulamento  | Atributos privados e metodos getters/setters |
-| Heranca         | `Aluno` e `Professor` herdam de `Usuario` |
-| Polimorfismo    | Cada tipo de usuario possui limite de emprestimos diferente |
-| Coleções        | Uso de `ArrayList` para guardar dados em memoria |
+| Conceito | Onde aparece no projeto |
+|---|---|
+| **Classe e Objeto** | `Usuario`, `Aluno`, `Professor`, `Livros`, `Emprestimo` |
+| **Encapsulamento** | Atributos privados com métodos getters/setters |
+| **Herança** | `Aluno` e `Professor` herdam de `Usuario` |
+| **Polimorfismo** | Cada tipo de usuário possui limite de empréstimos diferente |
+| **Coleções** | Uso de `ArrayList` para guardar dados em memória |
 
 ---
 
-## Funcionalidades
+## ⚙️ Funcionalidades
 
-### Usuarios
+### 👤 Usuários
+- Cadastrar aluno
+- Cadastrar professor
+- Listar usuários cadastrados
+- Validar nome (sem números)
+- Validar matrícula (somente números)
+- Validar CPF (somente números, máximo de 11 dígitos)
 
-- Cadastrar aluno.
-- Cadastrar professor.
-- Listar usuarios cadastrados.
-- Validar nome sem numeros.
-- Validar matricula somente com numeros.
-- Validar CPF somente com numeros.
-- Limitar CPF a no maximo 11 numeros.
-
-### Livros
-
-- Cadastrar livro.
-- Consultar livro por ISBN.
-- Listar livros cadastrados.
-- Controlar disponibilidade do livro.
+### 📖 Livros
+- Cadastrar livro
+- Consultar livro por ISBN
+- Listar livros cadastrados
+- Controlar disponibilidade do livro
 
 Campos do livro:
 
-| Campo | Descricao |
+| Campo | Descrição |
 |---|---|
-| Titulo | Nome do livro |
+| Título | Nome do livro |
 | Autor | Autor da obra |
-| ISBN | Codigo identificador |
-| Ano | Ano de publicacao |
+| ISBN | Código identificador |
+| Ano | Ano de publicação |
 | Editora | Editora do livro |
-| Status | Disponivel ou emprestado |
+| Status | Disponível ou emprestado |
 
-### Emprestimos
-
-- Realizar emprestimo.
-- Registrar numero do emprestimo.
-- Vincular usuario ao emprestimo.
-- Vincular um ou mais livros ao emprestimo.
-- Registrar data informada pelo usuario.
-- Listar emprestimos.
-- Realizar devolucao.
-- Atualizar status do livro apos emprestimo ou devolucao.
+### 🔄 Empréstimos
+- Realizar empréstimo
+- Registrar número do empréstimo
+- Vincular usuário ao empréstimo
+- Vincular um ou mais livros ao empréstimo
+- Registrar data informada pelo usuário
+- Listar empréstimos
+- Realizar devolução
+- Atualizar status do livro após empréstimo ou devolução
 
 ---
 
-## Menu Principal
+## 🖥 Menu Principal
 
-Ao iniciar o sistema, o menu principal e exibido assim:
+Ao iniciar o sistema, o menu principal é exibido assim:
 
 ```text
-=== Sistema de Gestao de Biblioteca Academica ===
-1 - Usuarios
+=== Sistema de Gestão de Biblioteca Acadêmica ===
+1 - Usuários
 2 - Livros
-3 - Emprestimos
+3 - Empréstimos
 0 - Sair
-Escolha uma opcao:
+Escolha uma opção:
 ```
 
-Cada opcao leva para um setor especifico do sistema.
+Cada opção leva para um setor específico do sistema.
 
 ---
 
-## Estrutura do Projeto
+## 📁 Estrutura do Projeto
 
 ```text
-src/
-  Main.java
-  MenuBiblioteca.java
-  Usuario.java
-  Aluno.java
-  Professor.java
-  Livros.java
-  Emprestimo.java
+📦 biblioteca-academica
+ ┗ 📂 src
+    ┣ 📄 Main.java
+    ┣ 📄 MenuBiblioteca.java
+    ┣ 📄 Usuario.java
+    ┣ 📄 Aluno.java
+    ┣ 📄 Professor.java
+    ┣ 📄 Livros.java
+    ┗ 📄 Emprestimo.java
 ```
 
----
-
-## Explicacao das Classes
+### Explicação das Classes
 
 | Classe | Responsabilidade |
 |---|---|
-| `Main` | Inicia o sistema |
-| `MenuBiblioteca` | Exibe o menu principal e guarda as listas principais |
-| `Usuario` | Classe base para alunos e professores |
-| `Aluno` | Representa usuarios do tipo aluno |
-| `Professor` | Representa usuarios do tipo professor |
-| `Livros` | Representa os livros e possui o menu de livros |
-| `Emprestimo` | Representa e controla os emprestimos |
+| `Main` | Ponto de entrada; inicia o sistema |
+| `MenuBiblioteca` | Exibe o menu principal e mantém as listas de dados |
+| `Usuario` | Classe base (pai) para `Aluno` e `Professor` |
+| `Aluno` | Representa usuários do tipo aluno |
+| `Professor` | Representa usuários do tipo professor |
+| `Livros` | Representa os livros e contém o menu de livros |
+| `Emprestimo` | Representa e controla os empréstimos |
 
 ---
 
-## Como Executar
+## 🚀 Como Executar
 
-### Compilar
+### 1. Clone o repositório
 
-No terminal, dentro da pasta do projeto:
+```bash
+git clone https://github.com/seu-usuario/biblioteca-academica.git
+cd biblioteca-academica
+```
 
+### 2. Compile o projeto
+
+**Linux / macOS:**
 ```bash
 javac -encoding UTF-8 -d out src/*.java
 ```
 
-No Windows PowerShell:
-
+**Windows (PowerShell):**
 ```powershell
 javac -encoding UTF-8 -d out src\*.java
 ```
 
-### Executar
+### 3. Execute o sistema
 
 ```bash
 java -cp out Main
@@ -150,24 +171,47 @@ java -cp out Main
 
 ---
 
-## Requisitos
+## 📌 Requisitos
 
-- Java JDK 8 ou superior.
-- Editor ou IDE Java.
+- **Java JDK 8** ou superior
 
-IDE recomendadas:
+**IDEs recomendadas:**
 
-- IntelliJ IDEA
-- Eclipse
-- Visual Studio Code
-- BlueJ
+| IDE | Link |
+|---|---|
+| IntelliJ IDEA | https://www.jetbrains.com/idea/ |
+| Eclipse | https://www.eclipse.org/ |
+| Visual Studio Code | https://code.visualstudio.com/ |
+| BlueJ | https://www.bluej.org/ |
 
 ---
 
-## Observacoes
+## ⚠️ Observações
 
-- O sistema nao utiliza banco de dados.
-- Os dados ficam salvos apenas enquanto o programa esta aberto.
-- Ao encerrar o sistema, os dados cadastrados sao perdidos.
-- O foco do projeto e praticar Programacao Orientada a Objetos em Java.
+> - O sistema **não utiliza banco de dados**.
+> - Os dados ficam salvos **apenas enquanto o programa está aberto**.
+> - Ao encerrar o sistema, todos os dados cadastrados são **perdidos**.
+> - O foco do projeto é praticar **Programação Orientada a Objetos em Java**.
 
+---
+
+## 👨‍💻 Desenvolvedores
+
+<div align="center">
+
+Desenvolvido por:
+
+| [<img src="https://ui-avatars.com/api/?name=Joao+Victor&size=100&background=0D8ABC&color=fff&rounded=true" width="80"/>](https://github.com/) | [<img src="https://ui-avatars.com/api/?name=Pedro+Henrique&size=100&background=6A0DAD&color=fff&rounded=true" width="80"/>](https://github.com/) |
+|:---:|:---:|
+| **João Victor Machado Reino** | **Pedro Henrique Franco Dias** |
+| Desenvolvedor | Desenvolvedor |
+
+</div>
+
+---
+
+<div align="center">
+
+Projeto desenvolvido para fins acadêmicos — Prática de Programação Orientada a Objetos em Java.
+
+</div>
