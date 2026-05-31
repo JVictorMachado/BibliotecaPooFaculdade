@@ -1,0 +1,119 @@
+@startuml Classes
+title Diagrama de Classes — Sistema de Biblioteca
+
+skinparam classAttributeIconSize 0
+skinparam class {
+    BackgroundColor White
+    BorderColor #2C3E50
+    HeaderBackgroundColor #2C3E50
+    HeaderFontColor White
+    FontSize 12
+    AttributeFontSize 11
+}
+skinparam arrow {
+    Color #2C3E50
+    FontColor #2C3E50
+    FontSize 11
+}
+skinparam stereotypeCBackgroundColor #BDC3C7
+
+' ─────────────────────────────────────────
+'  LIVRO
+' ─────────────────────────────────────────
+class Livro {
+    - titulo: String
+    - autor: String
+    - isbn: String
+    - ano: int
+    - editora: String
+    - disponivel: boolean
+    ==
+    + Livro(titulo, autor, isbn, ano, editora)
+    ..getters / setters..
+    + getTitulo(): String
+    + getAutor(): String
+    + getIsbn(): String
+    + getAno(): int
+    + getEditora(): String
+    + isDisponivel(): boolean
+    + setDisponivel(d: boolean): void
+    ..comportamento..
+    + emprestar(): void
+    + devolver(): void
+    + getStatus(): String
+    + mostrarDados(): void
+}
+
+' ─────────────────────────────────────────
+'  HIERARQUIA DE USUÁRIO
+' ─────────────────────────────────────────
+abstract class Usuario {
+    - nome: String
+    - matricula: int
+    - tipo: String
+    - cpf: String
+    - email: String
+    ==
+    + Usuario(nome, matricula, tipo, cpf, email)
+    ..getters / setters..
+    + getNome(): String
+    + getMatricula(): int
+    + getTipo(): String
+    + getCpf(): String
+    + getEmail(): String
+    ..comportamento..
+    + getLimiteEmprestimos(): int
+    + mostrarDados(): void
+}
+
+class Aluno {
+    ==
+    + Aluno(nome, matricula, tipo, cpf, email)
+    + getLimiteEmprestimos(): int
+    + {static} criar(sc: Scanner): Aluno
+}
+
+class Professor {
+    ==
+    + Professor(nome, matricula, tipo, cpf, email)
+    + getLimiteEmprestimos(): int
+    + {static} criar(sc: Scanner): Professor
+}
+
+' ─────────────────────────────────────────
+'  EMPRÉSTIMO
+' ─────────────────────────────────────────
+class Emprestimo {
+    - numero: int
+    - data: String
+    - status: String
+    - ativo: boolean
+    ==
+    + Emprestimo(numero, usuario, livros, data)
+    ..getters / setters..
+    + getNumero(): int
+    + getUsuario(): Usuario
+    + getLivros(): ArrayList<Livro>
+    + getData(): String
+    + getStatus(): String
+    ..comportamento..
+    + estaAtivo(): boolean
+    + finalizar(): void
+    + mostrarDados(): void
+}
+
+' ─────────────────────────────────────────
+'  RELACIONAMENTOS
+' ─────────────────────────────────────────
+
+' Herança
+Usuario <|-- Aluno     : extends
+Usuario <|-- Professor : extends
+
+' Emprestimo -> Usuario  (associação: 1 usuário por empréstimo)
+Emprestimo "0..*" --> "1" Usuario : pertence a >
+
+' Emprestimo -> Livro  (composição: 1 ou mais livros por empréstimo)
+Emprestimo "1" *-- "1..*" Livro : contém >
+
+@enduml

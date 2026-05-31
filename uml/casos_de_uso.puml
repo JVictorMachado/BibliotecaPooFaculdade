@@ -1,0 +1,50 @@
+@startuml CasosDeUso
+title Diagrama de Casos de Uso — Sistema de Biblioteca
+
+left to right direction
+
+skinparam usecase {
+    BackgroundColor White
+    BorderColor #2C3E50
+    ArrowColor #2C3E50
+    FontSize 13
+}
+skinparam actor {
+    BackgroundColor #2C3E50
+    BorderColor #2C3E50
+    FontColor #2C3E50
+    FontStyle Bold
+    FontSize 13
+}
+skinparam rectangle {
+    BackgroundColor #F8F9FA
+    BorderColor #2C3E50
+    BorderThickness 2
+    FontStyle Bold
+    FontSize 14
+}
+skinparam arrow {
+    Color #2C3E50
+}
+
+actor "Bibliotecário" as bib
+
+rectangle "Sistema de Biblioteca" {
+
+    usecase "Cadastrar Livro\n(título, autor, ISBN, ano, editora)" as UC1
+    usecase "Cadastrar Usuário\n(nome, matrícula, tipo, CPF, e-mail)" as UC2
+    usecase "Consultar Disponibilidade\nde Livro" as UC3
+    usecase "Realizar Empréstimo\n(nº empréstimo, usuário, livro(s),\ndata, status)" as UC4
+    usecase "Devolver Livro\n(atualiza status do empréstimo\ne disponibilidade do exemplar)" as UC5
+    usecase "Listar Livros\n(ISBN, título, autor, editora, status)" as UC6
+
+}
+
+bib --> UC1
+bib --> UC2
+bib --> UC3
+bib --> UC4
+bib --> UC5
+bib --> UC6
+
+@enduml

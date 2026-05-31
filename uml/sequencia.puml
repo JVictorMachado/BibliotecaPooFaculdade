@@ -1,0 +1,126 @@
+@startuml Sequencia
+title Diagrama de Sequência — Empréstimo e Devolução
+
+skinparam sequence {
+    ParticipantBackgroundColor White
+    ParticipantBorderColor #2C3E50
+    ParticipantFontStyle Bold
+    ActorBackgroundColor #2C3E50
+    ActorBorderColor #2C3E50
+    ActorFontColor White
+    ActorFontStyle Bold
+    ArrowColor #2C3E50
+    ArrowFontColor #2C3E50
+    LifeLineBorderColor #7F8C8D
+    ActivationBackgroundColor #ECF0F1
+    ActivationBorderColor #2C3E50
+    BoxBackgroundColor #F8F9FA
+    BoxBorderColor #BDC3C7
+}
+skinparam noteBackgroundColor #FDFEFE
+skinparam noteBorderColor #2C3E50
+
+actor "Bibliotecário" as bib
+participant "MenuBiblioteca" as menu
+participant "Emprestimo" as emp
+participant "Usuario" as usr
+participant "Livro" as livro
+
+' ═══════════════════════════════════════════
+'  FLUXO 1 — REALIZAR EMPRÉSTIMO
+' ═══════════════════════════════════════════
+== Realizar Empréstimo ==
+
+bib -> menu : seleciona "Empréstimos"
+activate menu
+
+menu -> emp : menuEmprestimos(...)
+activate emp
+
+emp -> menu : solicita matrícula do usuário
+menu --> bib : exibe prompt
+bib -> menu : informa matrícula
+
+menu -> usr : buscarUsuario(usuarios, matricula)
+activate usr
+usr --> menu : retorna Usuario
+deactivate usr
+
+alt Usuário não encontrado
+    menu --> bib : "Usuário não encontrado"
+else Usuário encontrado
+    menu -> emp : solicita ISBN do(s) livro(s)
+    menu --> bib : exibe prompt
+    bib -> menu : informa ISBN
+
+    menu -> livro : buscarLivro(livros, isbn)
+    activate livro
+    livro --> menu : retorna Livro
+    deactivate livro
+
+    alt Livro não disponível
+        menu --> bib : "Livro indisponível"
+    else Livro disponível
+        menu -> livro : emprestar()
+        activate livro
+        note right: disponivel = false
+        livro --> menu : ok
+        deactivate livro
+
+        menu -> emp : new Emprestimo(numero, usuario, livros, data)
+        activate emp
+        note right: status = "Ativo"
+        emp --> menu : Emprestimo criado
+        deactivate emp
+
+        menu --> bib : exibe número do empréstimo e confirmação
+    end
+end
+
+deactivate emp
+deactivate menu
+
+' ═══════════════════════════════════════════
+'  FLUXO 2 — DEVOLVER LIVRO
+' ═══════════════════════════════════════════
+== Devolver Livro ==
+
+bib -> menu : seleciona "Devolução"
+activate menu
+
+menu -> emp : devolverLivro(sc, emprestimos)
+activate emp
+
+emp -> menu : solicita número do empréstimo
+menu --> bib : exibe prompt
+bib -> menu : informa número do empréstimo
+
+menu -> emp : buscarEmprestimo(emprestimos, numero)
+activate emp
+emp --> menu : retorna Emprestimo
+deactivate emp
+
+alt Empréstimo não encontrado
+    menu --> bib : "Empréstimo não encontrado"
+else Empréstimo encontrado
+    loop para cada Livro no empréstimo
+        menu -> livro : devolver()
+        activate livro
+        note right: disponivel = true
+        livro --> menu : ok
+        deactivate livro
+    end
+
+    menu -> emp : finalizar()
+    activate emp
+    note right: status = "Devolvido"\nativo = false
+    emp --> menu : ok
+    deactivate emp
+
+    menu --> bib : "Devolução realizada com sucesso"
+end
+
+deactivate emp
+deactivate menu
+
+@enduml
