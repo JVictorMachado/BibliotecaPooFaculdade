@@ -27,13 +27,13 @@ Ele utiliza classes separadas para representar usuarios, alunos, professores, li
 
 ## Conceitos de POO Aplicados
 
-| Conceito | Onde aparece no projeto |
-|---|---|
+| Conceito        | Onde aparece no projeto |
+|-----------------|---|
 | Classe e objeto | `Usuario`, `Aluno`, `Professor`, `Livros`, `Emprestimo` |
-| Encapsulamento | Atributos privados e metodos getters/setters |
-| Heranca | `Aluno` e `Professor` herdam de `Usuario` |
-| Polimorfismo | Cada tipo de usuario possui limite de emprestimos diferente |
-| Colecoes | Uso de `ArrayList` para guardar dados em memoria |
+| Encapsulamento  | Atributos privados e metodos getters/setters |
+| Heranca         | `Aluno` e `Professor` herdam de `Usuario` |
+| Polimorfismo    | Cada tipo de usuario possui limite de emprestimos diferente |
+| Coleções        | Uso de `ArrayList` para guardar dados em memoria |
 
 ---
 
