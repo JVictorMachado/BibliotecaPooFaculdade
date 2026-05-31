@@ -76,10 +76,8 @@ public class Usuario {
             System.out.println("1 - Cadastrar usuario");
             System.out.println("2 - Listar usuarios");
             System.out.println("0 - Voltar");
-            System.out.println("Escolha uma opcao:");
 
-            opcao = input.nextInt();
-            input.nextLine();
+            opcao = MenuBiblioteca.lerNumero(input, "Escolha uma opcao:");
 
             switch (opcao) {
                 case 1:
@@ -107,10 +105,8 @@ public class Usuario {
             System.out.println("1 - Aluno");
             System.out.println("2 - Professor");
             System.out.println("0 - Voltar");
-            System.out.println("Escolha uma opcao:");
 
-            opcao = input.nextInt();
-            input.nextLine();
+            opcao = MenuBiblioteca.lerNumero(input, "Escolha uma opcao:");
 
             switch (opcao) {
             case 1:

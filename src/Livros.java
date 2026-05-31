@@ -95,10 +95,8 @@ public class Livros {
             System.out.println("2 - Consultar livro");
             System.out.println("3 - Listar livros");
             System.out.println("0 - Voltar");
-            System.out.println("Escolha uma opcao:");
 
-            opcao = input.nextInt();
-            input.nextLine();
+            opcao = MenuBiblioteca.lerNumero(input, "Escolha uma opcao:");
 
             switch (opcao) {
                 case 1:
@@ -129,9 +127,7 @@ public class Livros {
         System.out.println("Informe o ISBN: ");
         String isbn = input.nextLine();
 
-        System.out.println("Informe o ano: ");
-        int ano = input.nextInt();
-        input.nextLine();
+        int ano = MenuBiblioteca.lerNumero(input, "Informe o ano: ");
 
         System.out.println("Informe a editora: ");
         String editora = input.nextLine();

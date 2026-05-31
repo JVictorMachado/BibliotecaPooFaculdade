@@ -7,15 +7,11 @@ public class Aluno extends Usuario {
     }
 
     public static Aluno criar(Scanner input) {
-        System.out.println("Informe o nome do Aluno: ");
-        String nome = input.nextLine();
+        String nome = MenuBiblioteca.lerNome(input, "Informe o nome do Aluno: ");
 
-        System.out.println("Informe o numero da matricula: ");
-        int matricula = input.nextInt();
-        input.nextLine();
+        int matricula = MenuBiblioteca.lerNumero(input, "Informe o numero da matricula: ");
 
-        System.out.println("Informe o cpf do Aluno: ");
-        String cpf = input.nextLine();
+        String cpf = MenuBiblioteca.lerCpf(input, "Informe o cpf do Aluno: ");
 
         System.out.println("Informe o email do Aluno: ");
         String email = input.nextLine();

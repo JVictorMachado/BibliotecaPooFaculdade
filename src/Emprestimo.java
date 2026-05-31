@@ -78,10 +78,8 @@ public class Emprestimo {
             System.out.println("2 - Devolver livros");
             System.out.println("3 - Listar emprestimos");
             System.out.println("0 - Voltar");
-            System.out.println("Escolha uma opcao:");
 
-            opcao = input.nextInt();
-            input.nextLine();
+            opcao = MenuBiblioteca.lerNumero(input, "Escolha uma opcao:");
 
             switch (opcao) {
                 case 1:
@@ -106,9 +104,7 @@ public class Emprestimo {
     public static int realizarEmprestimo(Scanner input, ArrayList<Emprestimo> emprestimos,
                                          ArrayList<Usuario> usuarios, ArrayList<Livros> livros,
                                          int numeroEmprestimo) {
-        System.out.println("Informe a matricula do usuario: ");
-        int matriculaEmprestimo = input.nextInt();
-        input.nextLine();
+        int matriculaEmprestimo = MenuBiblioteca.lerNumero(input, "Informe a matricula do usuario: ");
 
         Usuario usuarioEmprestimo = Usuario.buscarUsuario(usuarios, matriculaEmprestimo);
 
@@ -117,9 +113,7 @@ public class Emprestimo {
             return numeroEmprestimo;
         }
 
-        System.out.println("Quantos livros deseja emprestar: ");
-        int quantidadeLivros = input.nextInt();
-        input.nextLine();
+        int quantidadeLivros = MenuBiblioteca.lerNumero(input, "Quantos livros deseja emprestar: ");
 
         if (quantidadeLivros > usuarioEmprestimo.getLimiteEmprestimos()) {
             System.out.println("Quantidade acima do limite para esse usuario.");
@@ -164,9 +158,7 @@ public class Emprestimo {
     }
 
     public static void devolverLivro(Scanner input, ArrayList<Emprestimo> emprestimos) {
-        System.out.println("Informe o numero do emprestimo: ");
-        int numeroDevolucao = input.nextInt();
-        input.nextLine();
+        int numeroDevolucao = MenuBiblioteca.lerNumero(input, "Informe o numero do emprestimo: ");
 
         Emprestimo emprestimoDevolucao = buscarEmprestimo(emprestimos, numeroDevolucao);
 

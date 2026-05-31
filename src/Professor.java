@@ -7,15 +7,11 @@ public class Professor extends Usuario {
     }
 
     public static Professor criar(Scanner input) {
-        System.out.println("Informe o nome do Professor: ");
-        String nome = input.nextLine();
+        String nome = MenuBiblioteca.lerNome(input, "Informe o nome do Professor: ");
 
-        System.out.println("Informe o numero da matricula: ");
-        int matricula = input.nextInt();
-        input.nextLine();
+        int matricula = MenuBiblioteca.lerNumero(input, "Informe o numero da matricula: ");
 
-        System.out.println("Informe o cpf do Professor: ");
-        String cpf = input.nextLine();
+        String cpf = MenuBiblioteca.lerCpf(input, "Informe o cpf do Professor: ");
 
         System.out.println("Informe o email do Professor: ");
         String email = input.nextLine();
